@@ -6,7 +6,8 @@ jobs:
       - image: circleci/golang:1.8
     steps:
       - checkout
-      - run: make build
+      - run: go test tests
+      - run: go build gumball
       - run:
           name: Start service
           command: ./workdir/gumball
@@ -17,4 +18,5 @@ jobs:
             sleep 5
             curl --retry 10 --retry-delay 1 -X GET http://localhost:3000/ping
 
-       
+
+    
