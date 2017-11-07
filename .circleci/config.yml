@@ -4,6 +4,8 @@ jobs:
     working_directory: /go/src/github.com/paulnguyen/circleci
     docker:
       - image: circleci/golang:1.8
+    environment:
+      GOPATH: .     
     steps:
       - checkout
       - run: ls .
