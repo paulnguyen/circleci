@@ -7,13 +7,12 @@ jobs:
     steps:
       - checkout
       - run: ls .
-      - run: ls ./workdir
       - run: echo $GOPATH
       - run: go test tests
       - run: go build gumball
       - run:
           name: Start service
-          command: ./workdir/gumball
+          command: ./gumball
           background: true
       - run:
           name: Validate service is working
