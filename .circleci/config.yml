@@ -26,6 +26,10 @@ jobs:
           command: |
             sleep 5
             curl --retry 10 --retry-delay 1 -X GET http://localhost:3000/ping
+      - setup_remote_docker
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker build -t paulnguyen/circleci:beta .
+      - run: docker push paulnguyen/circleci:beta
 
 
     
