@@ -1,0 +1,20 @@
+version: 2
+jobs:
+  build:
+    working_directory: /go/src/github.com/paulnguyen/circleci
+    docker:
+      - image: circleci/golang:1.8
+    steps:
+      - checkout
+      - run: make build
+      - run:
+          name: Start service
+          command: ./workdir/gumball
+          background: true
+      - run:
+          name: Validate service is working
+          command: |
+            sleep 5
+            curl --retry 10 --retry-delay 1 -X GET http://localhost:3000/ping
+
+       
