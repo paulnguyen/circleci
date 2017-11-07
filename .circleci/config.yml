@@ -8,7 +8,12 @@ jobs:
       GOPATH: /go/src/github.com/paulnguyen/circleci     
     steps:
       - checkout
-      - run: ls .
+      - run: go get net/http
+      - run: go get encoding/json
+      - run: go get github.com/codegangsta/negroni
+      - run: go get github.com/gorilla/mux
+      - run: go get github.com/satori/go.uuid
+      - run: go get github.com/unrolled/render
       - run: echo $GOPATH
       - run: go test tests
       - run: go build gumball
